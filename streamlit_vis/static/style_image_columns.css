@@ -1,0 +1,34 @@
+/*
+set minimum width for table columns and images inside those columns,
+to get a flexible layout depending on the browser width.
+
+this is done by putting the table inside a tab container and then using
+css selectors to find it inside this tab container. this way, its possible
+to still have other tables on the same page without a minimum width.
+
+if style_button_columns.css is active, it already tweaks columns and buttons,
+so first we have to overwrite those properties.
+*/
+div.block-container div[data-testid="stVerticalBlock"]
+div.stTabs div[data-baseweb="tab-panel"]:nth-child(3) div[data-testid="stVerticalBlock"] {
+    max-width: unset !important;
+}
+
+div.block-container div[data-testid="stVerticalBlock"]
+div.stTabs div[data-baseweb="tab-panel"]:nth-child(3) div[data-testid="stVerticalBlock"]
+div[data-testid="stHorizontalBlock"] div[data-testid="column"] button
+{
+    width: var(--imagesize) !important;
+    text-align: left;
+    padding: 5px;
+}
+
+div.stTabs div[data-baseweb="tab-panel"]:nth-child(3) div[data-testid="stVerticalBlock"]
+div[data-testid="stHorizontalBlock"] div[data-testid="column"] {
+    min-width: var(--imagesize);
+}
+
+div.stTabs div[data-baseweb="tab-panel"]:nth-child(3) div[data-testid="stVerticalBlock"]
+div[data-testid="stHorizontalBlock"] div[data-testid="column"] div[data-testid="stImage"] {
+    min-height:var(--imagesize);
+}

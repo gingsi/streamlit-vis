@@ -1,0 +1,42 @@
+{
+  "17": {
+    "question": "Are there more than 2 gaussians?",
+    "answer": "yes",
+    "highlevel_id": "7"
+  },
+  "18": {
+    "question": "Are there less than 2 gaussians?",
+    "answer": "no",
+    "highlevel_id": "7"
+  },
+  "19": {
+    "question": "How many gaussians are there?",
+    "answer": 3,
+    "highlevel_id": "7"
+  },
+  "20": {
+    "question": "Are there less than 3 gaussians?",
+    "answer": "yes",
+    "highlevel_id": "8"
+  },
+  "21": {
+    "question": "Is there an even number of gaussians?",
+    "answer": "no",
+    "highlevel_id": "8"
+  },
+  "22": {
+    "question": "How many gaussians are there?",
+    "answer": 1,
+    "highlevel_id": "8"
+  },
+  "23": {
+    "question": "Are there more than 3 gaussians?",
+    "answer": "yes",
+    "highlevel_id": "9"
+  },
+  "24": {
+    "question": "How many gaussians are there?",
+    "answer": 4,
+    "highlevel_id": "9"
+  }
+}

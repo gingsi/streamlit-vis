@@ -1,0 +1,7 @@
+streamlit
+streamlit-permalink
+numpy
+pillow
+pandas
+importlib_resources
+matplotlib

@@ -1,0 +1,14 @@
+/*
+by default, the columns span the whole page and the button size depends on the text.
+the goal here is to set a max-width for the columns and a fixed width for the buttons.
+
+note that we style the width of st.container() so all containers on this page will have that width.
+*/
+
+div.block-container div[data-testid="stVerticalBlock"] div[data-testid="stVerticalBlock"]  {
+    max-width: 600px !important;
+}
+div.block-container div[data-testid="stVerticalBlock"] div[data-testid="stVerticalBlock"]
+div[data-testid="stHorizontalBlock"] div[data-testid="column"] button {
+    width: 90px; padding:0;
+}

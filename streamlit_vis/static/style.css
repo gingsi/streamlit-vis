@@ -1,0 +1,35 @@
+/* tighter text layout */
+body {
+    line-height: 1;
+}
+
+/* smaller sidebar */
+section[data-testid="stSidebar"] {
+    width: 150px !important;
+}
+
+/* less padding in main content */
+section.main div.block-container {
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+/* decrease size of headers */
+h1 {font-size: 1.5rem;!important;}
+h2 {font-size: 1.25rem;!important;}
+h3 {font-size: 1.125rem; !important;}
+h4 {font-size: 1rem;!important;}
+h5 {font-size: 0.875rem;!important;}
+h6 {font-size: 0.75rem;!important;}
+
+/* style links */
+div.stMarkdown a {
+    text-decoration: none;
+    color: #8899ff;
+    font-weight: bold;
+}
+
+/* currently we show all images in their actual sizes, so viewing them in fullscreen
+does not make sense. hide the button */
+button[title="View fullscreen"] {
+    display: none;
+}

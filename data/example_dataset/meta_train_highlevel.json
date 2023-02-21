@@ -1,0 +1,75 @@
+{
+  "0": {
+    "lowlevel_ids": [
+      "0",
+      "1",
+      "2"
+    ],
+    "width": 559,
+    "height": 513,
+    "image_file": "example_dataset/images/train_0.png",
+    "n_gaussians": 2
+  },
+  "1": {
+    "lowlevel_ids": [
+      "3",
+      "4",
+      "5"
+    ],
+    "width": 451,
+    "height": 587,
+    "image_file": "example_dataset/images/train_1.png",
+    "n_gaussians": 2
+  },
+  "2": {
+    "lowlevel_ids": [
+      "6"
+    ],
+    "width": 408,
+    "height": 538,
+    "image_file": "example_dataset/images/train_2.png",
+    "n_gaussians": 1
+  },
+  "3": {
+    "lowlevel_ids": [
+      "7",
+      "8"
+    ],
+    "width": 548,
+    "height": 409,
+    "image_file": "example_dataset/images/train_3.png",
+    "n_gaussians": 1
+  },
+  "4": {
+    "lowlevel_ids": [
+      "9",
+      "10",
+      "11"
+    ],
+    "width": 432,
+    "height": 585,
+    "image_file": "example_dataset/images/train_4.png",
+    "n_gaussians": 4
+  },
+  "5": {
+    "lowlevel_ids": [
+      "12",
+      "13"
+    ],
+    "width": 475,
+    "height": 464,
+    "image_file": "example_dataset/images/train_5.png",
+    "n_gaussians": 1
+  },
+  "6": {
+    "lowlevel_ids": [
+      "14",
+      "15",
+      "16"
+    ],
+    "width": 585,
+    "height": 523,
+    "image_file": "example_dataset/images/train_6.png",
+    "n_gaussians": 3
+  }
+}
