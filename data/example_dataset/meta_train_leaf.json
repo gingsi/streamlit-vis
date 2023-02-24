@@ -2,86 +2,86 @@
   "0": {
     "question": "Are there more than 2 gaussians?",
     "answer": "no",
-    "highlevel_id": "0"
+    "root_id": "0"
   },
   "1": {
     "question": "Are there less than 2 gaussians?",
     "answer": "no",
-    "highlevel_id": "0"
+    "root_id": "0"
   },
   "2": {
     "question": "Is there an even number of gaussians?",
     "answer": "yes",
-    "highlevel_id": "0"
+    "root_id": "0"
   },
   "3": {
     "question": "Are there more than 2 gaussians?",
     "answer": "no",
-    "highlevel_id": "1"
+    "root_id": "1"
   },
   "4": {
     "question": "Are there less than 2 gaussians?",
     "answer": "no",
-    "highlevel_id": "1"
+    "root_id": "1"
   },
   "5": {
     "question": "Is there an even number of gaussians?",
     "answer": "yes",
-    "highlevel_id": "1"
+    "root_id": "1"
   },
   "6": {
     "question": "Are there less than 2 gaussians?",
     "answer": "yes",
-    "highlevel_id": "2"
+    "root_id": "2"
   },
   "7": {
     "question": "Is there an even number of gaussians?",
     "answer": "no",
-    "highlevel_id": "3"
+    "root_id": "3"
   },
   "8": {
     "question": "How many gaussians are there?",
-    "answer": 1,
-    "highlevel_id": "3"
+    "answer": "1",
+    "root_id": "3"
   },
   "9": {
     "question": "Are there more than 2 gaussians?",
     "answer": "yes",
-    "highlevel_id": "4"
+    "root_id": "4"
   },
   "10": {
     "question": "Are there less than 2 gaussians?",
     "answer": "no",
-    "highlevel_id": "4"
+    "root_id": "4"
   },
   "11": {
     "question": "How many gaussians are there?",
-    "answer": 4,
-    "highlevel_id": "4"
+    "answer": "4",
+    "root_id": "4"
   },
   "12": {
     "question": "Are there more than 2 gaussians?",
     "answer": "no",
-    "highlevel_id": "5"
+    "root_id": "5"
   },
   "13": {
     "question": "Is there an even number of gaussians?",
     "answer": "no",
-    "highlevel_id": "5"
+    "root_id": "5"
   },
   "14": {
     "question": "Are there more than 3 gaussians?",
     "answer": "no",
-    "highlevel_id": "6"
+    "root_id": "6"
   },
   "15": {
     "question": "Are there less than 3 gaussians?",
     "answer": "no",
-    "highlevel_id": "6"
+    "root_id": "6"
   },
   "16": {
     "question": "Is there an even number of gaussians?",
     "answer": "no",
-    "highlevel_id": "6"
+    "root_id": "6"
   }
 }

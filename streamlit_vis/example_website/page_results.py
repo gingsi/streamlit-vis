@@ -1,37 +1,37 @@
 import streamlit as st
 import streamlit_permalink as stp
 
-from streamlit_vis.st_utils import METRIC_NAME, modify_css, METRIC_FORMAT, G_PAGE, G_SUBSET,\
-    G_GROUP, G_PAGENUM
-from streamlit_vis.website_component import WebsiteComponent
+from streamlit_vis.st_utils import modify_css, ColumnGridGenerator
+from streamlit_vis.example_website.website import ExampleWebsite
 
 
 def str_to_html_anchor(in_str):
     return in_str.replace(" ", "_").replace("/", "_").replace("(", "").replace(")", "")
 
 
-def render_results_page(comp: WebsiteComponent):
-    modify_css(["button_columns"])
+def render_results_page(website: ExampleWebsite):
+    c = website.conf
+    modify_css(c)
+
     st.markdown("# Results")
 
-    # evaluation subsets
-    subsets = comp.subsets
+    subsets = website.get_subsets()
     subset_size_reference = len(subsets["all"]["subsets"]["all"])
+    metric_names = [c.METRIC_NAME]
+    metric_formatters = {metric_name: c.METRIC_FORMAT[metric_name] for metric_name in metric_names}
 
-    # metrics
-    metric_names = [METRIC_NAME]
-
-    # model results
-    results = comp.results
-    model_names = list(results.keys())
+    _predictions, _metrics_per_datapoint, subset_results = website.get_results()
+    model_names = list(subset_results.keys())
 
     st.markdown(f"Show results for models **{', '.join(model_names)}** "
                 f"on groups **{', '.join(subsets.keys())}**")
-    comp.create_nav_menu("results")
+    website.render_nav_menu("results")
 
-    show_abs = stp.checkbox("Show absolute score", key="show_absolute_score", value=True)
-    show_rel = stp.checkbox("Show score relative to the 'all' set", key="show_relative_score",
-                            value=True)
+    cols = st.container().columns([3, 3], gap="small")
+    with cols[0]:
+        show_abs = stp.checkbox("Show absolute score", key="chk_show_abs", value=True)
+    with cols[1]:
+        show_rel = stp.checkbox("Show score relative to the 'all' set", key="chk_show_rel", value=True)
 
     # table of contents
     content_lines = ["**Table of Contents**"]
@@ -44,7 +44,7 @@ def render_results_page(comp: WebsiteComponent):
     for model_name in model_names:
         collected_metrics_ref[model_name] = {}
         for metric_name in metric_names:
-            collected_metrics_ref[model_name][metric_name] = results[
+            collected_metrics_ref[model_name][metric_name] = subset_results[
                 model_name][metric_name]["all"]["all"]
 
     for group_name, group_info in subsets.items():
@@ -88,10 +88,10 @@ def render_results_page(comp: WebsiteComponent):
         for model_name in model_names:
             table_html.append(f"<tr><td>{model_name}</td>")
             for metric_name in metric_names:
-                formatter = METRIC_FORMAT[metric_name]
+                formatter = metric_formatters[metric_name]
                 metric_value_ref = collected_metrics_ref[model_name][metric_name]
                 for subset_name in group_data.keys():
-                    metric_value = results[
+                    metric_value = subset_results[
                         model_name][metric_name][group_name][subset_name]
                     metric_rel_value = metric_value - metric_value_ref
                     table_html.append(f"<td>")
@@ -114,17 +114,14 @@ def render_results_page(comp: WebsiteComponent):
 
         # create a grid of buttons to filter for this subset, with max 6 buttons per column
         subset_names = list(group_data.keys())
+        grid = ColumnGridGenerator(6)
         for i, subset_name in enumerate(subset_names):
-            col_i = i % 6
-            if col_i == 0:
-                cont = st.container()
-                cols = cont.columns(6, gap="small")
+            col = grid.next_column()
             # noinspection PyUnboundLocalVariable
-            comp.create_nav_button(
+            website.render_nav_button(
                     f"{subset_name}", True, {
-                            G_PAGE: "overview", G_SUBSET: subset_name, G_GROUP: group_name,
-                            G_PAGENUM: 0, },
-                    parent=cols[col_i],
-                    key=f"nav-{group_name}-{subset_name}-{i}")
+                            c.G_PAGE: "overview", c.G_SUBSET: subset_name,
+                            c.G_GROUP: group_name, c.G_PAGENUM: 0, },
+                    parent=col, key=f"nav-{group_name}-{subset_name}-{i}")
 
         st.markdown("[Back to top](#results)", unsafe_allow_html=True)

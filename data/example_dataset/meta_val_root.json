@@ -1,6 +1,6 @@
 {
   "7": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "17",
       "18",
       "19"
@@ -11,7 +11,7 @@
     "n_gaussians": 3
   },
   "8": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "20",
       "21",
       "22"
@@ -22,7 +22,7 @@
     "n_gaussians": 1
   },
   "9": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "23",
       "24"
     ],

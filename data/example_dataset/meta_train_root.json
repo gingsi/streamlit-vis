@@ -1,6 +1,6 @@
 {
   "0": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "0",
       "1",
       "2"
@@ -11,7 +11,7 @@
     "n_gaussians": 2
   },
   "1": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "3",
       "4",
       "5"
@@ -22,7 +22,7 @@
     "n_gaussians": 2
   },
   "2": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "6"
     ],
     "width": 408,
@@ -31,7 +31,7 @@
     "n_gaussians": 1
   },
   "3": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "7",
       "8"
     ],
@@ -41,7 +41,7 @@
     "n_gaussians": 1
   },
   "4": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "9",
       "10",
       "11"
@@ -52,7 +52,7 @@
     "n_gaussians": 4
   },
   "5": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "12",
       "13"
     ],
@@ -62,7 +62,7 @@
     "n_gaussians": 1
   },
   "6": {
-    "lowlevel_ids": [
+    "leaf_ids": [
       "14",
       "15",
       "16"

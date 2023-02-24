@@ -5,3 +5,4 @@ pillow
 pandas
 importlib_resources
 matplotlib
+joblib

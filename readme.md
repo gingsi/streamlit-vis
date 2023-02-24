@@ -50,4 +50,5 @@ This app is optimized for dark theme, activate it in the settings menu (top righ
 
 ## Version history
 
+- 2023-02-24: Refactor to decouple example app and library code (no backwards compatibility)
 - 2023-02-21: Initial version

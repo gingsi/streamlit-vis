@@ -1,7 +1,7 @@
 import logging
 import os
 from pathlib import Path
-from typing import Union, Optional, List
+from typing import Union
 
 import numpy as np
 import streamlit as st
@@ -9,46 +9,27 @@ from PIL import Image
 from importlib_resources import files
 
 import streamlit_vis
+from streamlit_vis.vis_config_default import default_config
 
 logger = logging.getLogger("streamlit_vis")
-THUMBNAIL_SIZE = 280
-PERPAGE = 5
-DATA_PATH = Path("data")
-MODEL_NAMES = ["random", "sayyes", "oracle"]
-METRIC_NAME = "acc"
-METRIC_FORMAT = {"acc": "{:.0%}"}
-DATASETS = {"example_dataset": ["train", "val"]}
-PAGES = ["overview", "details", "results"]
-
-# url get parameters, short parameter names to avoid getting too long urls
-G_PAGENUM = "pn"
-G_GROUP = "g"
-G_SUBSET = "su"
-G_SEARCH = "se"
-G_LOWLEVEL_ID = "lli"
-G_PAGE = "p"
-G_APP = "a"
-G_DATASET = "d"
-G_SPLIT = "sp"
+PathType = Union[Path, str]
 
 
-def modify_css(css_names: Optional[List[str]] = None):
-    """
-    See the CSS files for details. Uses importlib_resources (a backport from python 3.10)
-    to find the files relative to this package.
-    """
+def modify_css(conf=default_config, button_columns=True, image_columns=False):
+    """See the respective CSS files for details."""
     # noinspection PyTypeChecker
     package_files = files(streamlit_vis)
-    css_main = (package_files / "static" / "style.css").read_text(encoding="utf-8")
+    css_dir = package_files / "static"
+    css_main = (css_dir / "style.css").read_text(encoding="utf-8")
     css_appends = []
-    if css_names is not None:
-        for css_name in css_names:
-            css_appends.append((package_files / "static" / f"style_{css_name}.css"
-                                ).read_text(encoding="utf-8"))
+    if button_columns:
+        css_appends.append((css_dir / "style_button_columns.css").read_text(encoding="utf-8"))
+    if image_columns:
+        css_appends.append((css_dir / "style_image_columns.css").read_text(encoding="utf-8"))
     st.markdown("\n".join([
             "<style>",
             ":root {",
-            f"--imagesize: {THUMBNAIL_SIZE:d}px;",
+            f"--imagesize: {conf.THUMBNAIL_SIZE:d}px;",
             "}",
             css_main,
             *css_appends,
@@ -74,6 +55,27 @@ def create_thumbnail(input_file, output_file, longer_side: int = 200):
     output_file = Path(output_file)
     os.makedirs(output_file.parent, exist_ok=True)
     img.save(output_file)
+
+
+class ColumnGridGenerator:
+    def __init__(self, n_columns: int):
+        self.i = 0
+        self.n_columns = n_columns
+        self.columns = None
+
+    def next_column(self):
+        col_i = self.i % self.n_columns
+        if col_i == 0:
+            cont = st.container()
+            self.columns = cont.columns(self.n_columns, gap="small")
+        self.i += 1
+        return self.columns[col_i]
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        return self.next_column()
 
 
 def read_image_for_streamlit(file: Union[str, Path]):
