@@ -17,11 +17,7 @@ Tested with `python=3.9 streamlit=1.18.1`
 Start the streamlit server:
 
 ~~~bash
-# dev mode
-streamlit run --server.runOnSave true run_app.py -- --debug
-
-# normal mode
-streamlit run run_app.py
+streamlit run --server.runOnSave true run_app.py
 ~~~
 
 This app is optimized for dark theme, activate it in the settings menu (top right).
