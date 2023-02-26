@@ -20,10 +20,10 @@ def render_details_page(website: ExampleWebsite):
     except StopRunning:
         return
 
-    leaf_meta, root_meta, _leaf_ids, _root_ids, _leaf_id2num, _root_id2num = metadata_object
+    leaf_meta, _root_meta, _leaf_ids, _root_ids, _leaf_id2num, _root_id2num = metadata_object
 
     # render image and qa
-    leaf_item, root_item = leaf_meta[current_leaf_id], root_meta[current_root_id]
+    leaf_item = leaf_meta[current_leaf_id]
     image_file = website.dataset.get_image_file(current_root_id)
     st.image(read_image_for_streamlit(image_file), use_column_width=False)
     st.markdown(f"*Question:* {leaf_item['question']}")
@@ -34,10 +34,10 @@ def render_details_page(website: ExampleWebsite):
     model_names = list(subset_results.keys())
     data_dict = {"model": model_names, "answer": [], "acc%": [], }
 
-    for model_name, result in subset_results.items():
+    for model_name, _result in subset_results.items():
         answer = predictions[model_name][current_leaf_id]
         data_dict["answer"].append(answer)
-        acc = metrics_per_datapoint[model_name][current_leaf_id][c.METRIC_NAME]
+        acc = metrics_per_datapoint[model_name][c.METRIC_NAME][current_leaf_id]
         data_dict["acc%"].append(acc * 100)
 
     df = pd.DataFrame(data_dict)

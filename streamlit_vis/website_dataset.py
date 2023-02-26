@@ -7,7 +7,7 @@ from typing import List, Optional
 import streamlit as st
 
 from streamlit_vis.dataset_base import VisionDatasetComponent
-from streamlit_vis.st_utils import logger, PathType
+from streamlit_vis.st_utils import PathType
 from streamlit_vis.website_base import BaseWebsite
 
 
@@ -40,7 +40,7 @@ class DatasetWebsite(BaseWebsite, metaclass=ABCMeta):
             self.predictions:
                 {model_name: {leaf_id: prediction}}
             self.metrics_per_datapoint:
-                {model_name: {leaf_id: {metric_name: metric_value}}}
+                {model_name: {metric_name: {leaf_id: metric_value}}}
             self.subset_results:
                 {model_name: {metric_name: {group_name: {subset_name: metric_aggregated_value}}}}
         """
@@ -156,7 +156,7 @@ class DatasetWebsite(BaseWebsite, metaclass=ABCMeta):
         """
         website = self
         c = self.conf
-        leaf_meta, root_meta, leaf_ids, root_ids, leaf_id2num, root_id2num = metadata_object
+        _leaf_meta, _root_meta, _leaf_ids, root_ids, _leaf_id2num, _root_id2num = metadata_object
 
         # compute current position
         pagenum, perpage = website.get_pagination_params()
@@ -164,7 +164,7 @@ class DatasetWebsite(BaseWebsite, metaclass=ABCMeta):
         if n_pages == 0:
             st.markdown(f"No data found, clear search field.")
             raise StopRunning
-        elif pagenum >= n_pages:
+        if pagenum >= n_pages:
             st.markdown(f"Page {pagenum} is out of range. Showing the first page.")
             pagenum = 0
 

@@ -1,9 +1,9 @@
 from collections import defaultdict
 from copy import deepcopy
 
-import joblib
+from streamlit_vis.joblib_ext import get_joblib_memory
 
-mem = joblib.Memory(location="cache_joblib", verbose=0)
+mem = get_joblib_memory(verbose=0)
 
 
 def filter_data_given_leaf_ids(
@@ -28,13 +28,13 @@ def filter_data_given_leaf_ids(
             tree[root_id].append(str(low_id))
 
     new_meta_root = {}
-    for root_id, leaf_ids in tree.items():
+    for root_id, root_leaf_ids in tree.items():
         new_meta_root[root_id] = deepcopy(root_meta[root_id])
-        new_meta_root[root_id]["leaf_ids"] = leaf_ids
+        new_meta_root[root_id]["leaf_ids"] = root_leaf_ids
 
-    # check consistency of the data (might be slow for big datasets)
-    new_sum_ll = sum(len(v['leaf_ids']) for v in new_meta_root.values())
-    assert new_sum_ll == len(new_meta_leaf)
+    # # check consistency of the data (might be slow for big datasets)
+    # new_sum_ll = sum(len(v['leaf_ids']) for v in new_meta_root.values())
+    # assert new_sum_ll == len(new_meta_leaf)
 
     return new_meta_leaf, new_meta_root
 

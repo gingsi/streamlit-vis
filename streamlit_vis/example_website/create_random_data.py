@@ -16,8 +16,7 @@ def create_question(q, a, chance=0.5):
     """Create a question."""
     if np.random.uniform() < chance:
         return {"question": q, "answer": a}
-    else:
-        return None
+    return None
 
 
 def create_gaussian_data(base_path=conf.DATA_PATH):
@@ -36,13 +35,13 @@ def create_gaussian_data(base_path=conf.DATA_PATH):
     for split_name, split_size in split_sizes.items():
         meta_leaf, meta_root = {}, {}
 
-        for n_img in range(split_size):
+        for _n_img in range(split_size):
             h = np.random.randint(400, 600)
             w = np.random.randint(400, 600)
             img = np.random.uniform(0, 0.3, size=(h, w, 3))
             root_id = f"{n_total_root}"
             n_gauss = np.random.randint(1, n_max_gauss)
-            for n_g in range(n_gauss):
+            for _n_g in range(n_gauss):
                 border = min(w, h) // 10
                 x = np.random.uniform(border, w - border)
                 y = np.random.uniform(border, h - border)
@@ -79,6 +78,7 @@ def create_gaussian_data(base_path=conf.DATA_PATH):
 
             # create questions for the gaussians
             def _create_question(q, a, chance=default_chance):
+                # pylint: disable=cell-var-from-loop
                 nonlocal n_total_leaf
                 if np.random.uniform() < chance:
                     meta_leaf[f"{n_total_leaf}"] = {

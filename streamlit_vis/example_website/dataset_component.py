@@ -13,9 +13,6 @@ from streamlit_vis.dataset_base import VisionDatasetComponent
 
 @dataclass
 class GaussDatasetComponent(VisionDatasetComponent):
-    def __post_init__(self):
-        super().__post_init__()
-
     def _load_metadata(self):
         dataset_path = self.dataset_dir
         assert dataset_path.is_dir(), f"Path {dataset_path} not found."
@@ -27,7 +24,7 @@ class GaussDatasetComponent(VisionDatasetComponent):
         return meta_leaf, meta_root
 
     def _load_subsets(self):
-        meta_leaf, meta_root = self.get_metadata()
+        meta_leaf, _meta_root = self.get_metadata()
 
         # sort data into groups for analysis
         # here, classify the questions with a simple heuristic

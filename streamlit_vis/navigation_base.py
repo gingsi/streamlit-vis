@@ -25,7 +25,8 @@ class BrowserComponent:
 
     def get_param(self, name, default=None, cast=None):
         params = self.url_get_params.get(name, [default])
-        assert len(params) == 1, f"Expected 1 value for get param {name}, got {len(params)}"
+        if len(params) > 1:
+            logger.warning("Expected 1 value for get param {name}, got {len(params)}")
         param = params[0]
         if cast is not None and param is not None:
             return cast(param)

@@ -1,12 +1,10 @@
 import json
 from dataclasses import dataclass
-from typing import Optional
 
 import numpy as np
 
 from streamlit_vis.example_website.config import ExampleWebsiteConfig
 from streamlit_vis.example_website.dataset_component import GaussDatasetComponent
-from streamlit_vis.st_utils import PathType
 from streamlit_vis.website_dataset import DatasetWebsite
 
 
@@ -29,7 +27,7 @@ class ExampleWebsite(DatasetWebsite):
         c = self.conf
         dataset_dir = self.dataset.dataset_dir
         split = self.dataset.split
-        leaf_meta, root_meta = self.dataset.get_metadata()
+        leaf_meta, _root_meta = self.dataset.get_metadata()
         subsets = self.dataset.get_subsets()
 
         # load predictions
@@ -38,12 +36,12 @@ class ExampleWebsite(DatasetWebsite):
         # compute metrics per individual prediction
         metrics_per_datapoint = {}
         for model_name, model_preds in predictions.items():
-            metrics_per_datapoint[model_name] = {}
+            metrics_per_datapoint[model_name] = {c.METRIC_NAME: {}}
             for leaf_id, leaf_data in leaf_meta.items():
                 gt_answer = leaf_data["answer"]
                 model_answer = model_preds[leaf_id]
                 acc = float(gt_answer == model_answer)
-                metrics_per_datapoint[model_name][leaf_id] = {c.METRIC_NAME: acc}
+                metrics_per_datapoint[model_name][c.METRIC_NAME][leaf_id] = acc
 
         # compute average metrics per subset
         # note group_name "all" subset_name "all" will give the average over the whole dataset
@@ -53,9 +51,9 @@ class ExampleWebsite(DatasetWebsite):
             for group_name, group_info in subsets.items():
                 group_results = {}
                 for subset_name, subset_ll_ids in group_info["subsets"].items():
-                    subset_acc = float(np.mean([metrics_per_datapoint[
-                                                    model_name][qid][c.METRIC_NAME] for qid in
-                                                subset_ll_ids]))
+                    subset_acc = float(np.mean([
+                            metrics_per_datapoint[model_name][c.METRIC_NAME][qid]
+                            for qid in subset_ll_ids]))
                     group_results[subset_name] = subset_acc
                 subset_results[model_name][c.METRIC_NAME][group_name] = group_results
 

@@ -4,6 +4,8 @@ A visualization example app for image datasets using streamlit.
 
 The app visualizes a dummy visual question answering dataset and example model predictions.
 
+[View demo](https://gingsi-streamlit-vis-run-app-u0qg70.streamlit.app/)
+
 [See the gallery for screenshots.](#gallery)
 
 ## Setup
