@@ -1,3 +1,5 @@
 [browser]
 gatherUsageStats = false
-global.developmentMode = true
+
+[server]
+runOnSave = true

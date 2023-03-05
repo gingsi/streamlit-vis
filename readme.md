@@ -19,16 +19,18 @@ Tested with `python=3.9 streamlit=1.18.1`
 Start the streamlit server:
 
 ~~~bash
-streamlit run --server.runOnSave true run_app.py
+streamlit run run_app.py
 ~~~
 
 This app is optimized for dark theme, activate it in the settings menu (top right).
+
+See `.streamlit/config.toml` for the server settings.
 
 ## Features
 
 - Supports hierarchical data: For one image there can be 1 to N questions.
 - Basic filtering:
-    - Dataset is divided into "train" and "val" subsets.
+    - Datasets are divided into splits, here "train" and "val".
     - Questions are sorted into "number" and "yes/no" categories depending on their answer.
     - A search field can be used to search for specific questions.
 - The **overview** page shows a grid of images and questions.
@@ -48,5 +50,6 @@ This app is optimized for dark theme, activate it in the settings menu (top righ
 
 ## Version history
 
+- 2023-03-05: Update to support streamlit 1.19.0
 - 2023-02-24: Refactor to decouple example app and library code (no backwards compatibility)
 - 2023-02-21: Initial version

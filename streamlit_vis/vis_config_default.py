@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-@dataclass
 class WebsiteConfig:
     DATA_PATH = Path("data")
     PERPAGE = 20

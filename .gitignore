@@ -33,3 +33,4 @@ pip-delete-this-directory.txt
 profile_default/
 ipython_config.py
 .python-version
+.coverage
