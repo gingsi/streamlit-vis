@@ -12,7 +12,7 @@ The app visualizes a dummy visual question answering dataset and example model p
 
 Clone, cd into, create environment with python>=3.7 and `pip install -r requirements.txt`
 
-Tested with `python=3.9 streamlit=1.18.1`
+Tested with `python=3.9 streamlit=1.19.0`
 
 ## Usage
 
